@@ -1,0 +1,39 @@
+version: '3'
+
+networks:
+  lw-network:
+    driver: bridge
+
+services:
+  postgres:
+    image: postgres
+    container_name: database_velez
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=gabriel
+      - POSTGRES_PASSWORD=123456
+      - POSTGRES_DB=audiency
+    volumes:
+      - pgdata:/data/postgres
+
+  mongo:
+    image: bitnami/mongodb:4.2.3
+    container_name: lw-mongo
+    restart: always
+    environment:
+      - ALLOW_EMPTY_PASSWORD=no
+      - MONGODB_ROOT_PASSWORD=${MONGO_PASS_ROOT}
+      - MONGODB_USERNAME=${MONGO_USER}
+      - MONGODB_PASSWORD=${MONGO_PASS}
+      - MONGODB_DATABASE=${MONGO_DATABASE}
+    volumes:
+      - ./docker/volumes/storage/mongo:/bitnami/mongodb/data
+    ports:
+      - '${MONGO_PORT}:27017'
+    networks:
+      - lw-network
+volumes:
+  pgdata:
+    driver: local

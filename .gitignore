@@ -1,0 +1,8 @@
+node_modules
+tmp
+logs
+dist
+.env
+.env.test
+docker
+__tests__/coverage

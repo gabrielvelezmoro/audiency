@@ -1,0 +1,279 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "climedi Documentation",
+    "description": "Aplicativo para gest\u00e3o de cl\u00ednicas",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "\/states": {
+      "post": {
+        "tags": [
+          "Common.States"
+        ],
+        "summary": "Create a State.",
+        "description": "Create a State.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application\/json": {
+              "schema": {
+                "$ref": "#\/components\/schemas\/StateCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "State created",
+            "content": {
+              "application\/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#\/components\/schemas\/StateCreate"
+                  },
+                  "example": {
+                    "id": "da9f1c3d-3271-4b30-b729-1196e5b7402b",
+                    "name": "Estado de state",
+                    "code": "Uf de state"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "State already created"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Common.States"
+        ],
+        "summary": "Update a State.",
+        "description": "Update a State.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application\/json": {
+              "schema": {
+                "$ref": "#\/components\/schemas\/StateUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "State updated",
+            "content": {
+              "application\/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#\/components\/schemas\/StateUpdate"
+                  },
+                  "example": {
+                    "id": "da9f1c3d-3271-4b30-b729-1196e5b7402b",
+                    "name": "Estado de state",
+                    "code": "Uf de state"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "\/states\/list": {
+      "post": {
+        "tags": [
+          "Common.States"
+        ],
+        "summary": "List all States.",
+        "description": "List all States.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application\/json": {
+              "schema": {
+                "$ref": "#\/components\/schemas\/StateList"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application\/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#\/components\/schemas\/StateList"
+                  },
+                  "example": [
+                    {
+                      "id": "61e07817-7c0e-48c8-a538-10c2e58c17c8",
+                      "name": "Estado de state 1",
+                      "code": "Uf de state 1"
+                    },
+                    {
+                      "id": "9519abf8-957b-46a6-b3aa-bc0031c3942d",
+                      "name": "Estado de state 2",
+                      "code": "Uf de state 2"
+                    },
+                    {
+                      "id": "ae2aa955-469c-4e58-9bf2-bef9124fcc09",
+                      "name": "Estado de state 3",
+                      "code": "Uf de state 3"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "\/states\/count": {
+      "post": {
+        "tags": [
+          "Common.States"
+        ],
+        "summary": "List all States.",
+        "description": "List all States.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application\/json": {
+              "schema": {
+                "$ref": "#\/components\/schemas\/StateCount"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application\/json": {
+                "schema": {
+                  "type": "array",
+                  "items": [],
+                  "example": {
+                    "count": 25
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "\/states\/{id}": {
+      "get": {
+        "tags": [
+          "Common.States"
+        ],
+        "summary": "Return a State.",
+        "description": "Return a single record of State.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "State id.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application\/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#\/components\/schemas\/StateGet"
+                  },
+                  "example": {
+                    "id": "da9f1c3d-3271-4b30-b729-1196e5b7402b",
+                    "name": "Estado de state",
+                    "code": "Uf de state"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Common.States"
+        ],
+        "summary": "Delete a State.",
+        "description": "Delete a single record of State.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "State id.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application\/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#\/components\/schemas\/StateGet"
+                  },
+                  "example": {
+                    "id": "da9f1c3d-3271-4b30-b729-1196e5b7402b",
+                    "name": "Estado de state",
+                    "code": "Uf de state"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
