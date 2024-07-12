@@ -6,8 +6,8 @@ import { databaseConfig } from '@config/database';
  * Models Sequelize
  */
 
-import Cars from '@models/Cars';
-import Product from '@app/app/models/CarTypes';
+import Cars from '@app/app/models/cars';
+import Product from '@app/app/models/carTypes';
 
 class Database {
   public connection: any;

@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import categoriesRoutes from '@routes/categories';
+import categoriesRoutes from '@app/app/routes/cars';
 import productsRoutes from '@routes/products';
 
 const routes = Router();

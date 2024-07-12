@@ -17,23 +17,15 @@ services:
       - POSTGRES_DB=audiency
     volumes:
       - pgdata:/data/postgres
-
   mongo:
-    image: bitnami/mongodb:4.2.3
-    container_name: lw-mongo
+    image: mongo
     restart: always
-    environment:
-      - ALLOW_EMPTY_PASSWORD=no
-      - MONGODB_ROOT_PASSWORD=${MONGO_PASS_ROOT}
-      - MONGODB_USERNAME=${MONGO_USER}
-      - MONGODB_PASSWORD=${MONGO_PASS}
-      - MONGODB_DATABASE=${MONGO_DATABASE}
-    volumes:
-      - ./docker/volumes/storage/mongo:/bitnami/mongodb/data
     ports:
-      - '${MONGO_PORT}:27017'
-    networks:
-      - lw-network
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: gabriel
+      MONGO_INITDB_ROOT_PASSWORD: root
+
 volumes:
   pgdata:
     driver: local

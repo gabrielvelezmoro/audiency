@@ -3,7 +3,7 @@ import { Router } from 'express';
 /**
  * Controllers
  */
-import ProductController from '@controllers/ProductController';
+import ProductController from '@app/app/controllers/carsTypesController';
 
 const routes = Router();
 

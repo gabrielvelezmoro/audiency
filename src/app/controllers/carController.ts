@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { Op } from 'sequelize';
-import Cars from '@models/Cars';
+import Cars from '@app/app/models/cars';
 
 class CategoryController {
   async index(req: Request, res: Response) {

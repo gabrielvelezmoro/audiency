@@ -1,7 +1,8 @@
-import { Options } from 'sequelize';
+import '../bootstrap';
+import { Options, Dialect } from 'sequelize';
 
 export const databaseConfig: Options = {
-  dialect: 'postgres',
+  dialect: process.env.DB_DIALECT as Dialect,
   host: process.env.DB_HOST,
   username: process.env.DB_USER,
   password: process.env.DB_PASS,

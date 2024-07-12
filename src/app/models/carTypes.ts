@@ -1,5 +1,5 @@
 import { Model, Sequelize, DataTypes, BelongsTo } from 'sequelize';
-import Cars from '@models/Cars';
+import Cars from '@app/app/models/cars';
 
 class CarTypes extends Model {
   public static associations: {

@@ -32,7 +32,7 @@ const schema: Schema = new Schema(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 export default mongoose.model<Mail>('Mail', schema);

@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import { Op } from 'sequelize';
-import Product from '@app/app/models/CarTypes';
+import Product from '@app/app/models/carTypes';
 
-class ProductController {
+class CarTypesController {
   async index(req: Request, res: Response) {
     const store_id = req.storeId;
     const q = req.query.q || '';
@@ -131,4 +131,4 @@ class ProductController {
   }
 }
 
-export default new ProductController();
+export default new CarTypesController();
