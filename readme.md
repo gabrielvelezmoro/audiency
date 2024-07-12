@@ -1,13 +1,4 @@
 
-[![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/davidfaria/api-node-typescript-sequelize-mongodb/blob/master/LICENSE)
-![](https://img.shields.io/github/package-json/v/davidfaria/api-node-typescript-sequelize-mongodb.svg)
-![](https://img.shields.io/github/last-commit/davidfaria/api-node-typescript-sequelize-mongodb.svg?color=red)
-![](https://img.shields.io/github/languages/top/davidfaria/api-node-typescript-sequelize-mongodb.svg?color=yellow)
-![](https://img.shields.io/github/languages/count/davidfaria/api-node-typescript-sequelize-mongodb.svg?color=lightgrey)
-![](https://img.shields.io/github/languages/code-size/davidfaria/api-node-typescript-sequelize-mongodb.svg)
-![](https://img.shields.io/github/repo-size/davidfaria/api-node-typescript-sequelize-mongodb.svg?color=blueviolet)
-[![made-for-VSCode](https://img.shields.io/badge/Made%20for-VSCode-1f425f.svg)](https://code.visualstudio.com/)
-![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)
 
 ## :gear: Back-end
 
@@ -25,8 +16,6 @@
 ## Instruções
 
 ```bash
-# clonar o repositório
-git clone https://github.com/davidfaria/api-node-typescript-sequelize-mongodb.git
 
 # entrar na pasta do projeto
 cd api-node-typescript-sequelize-mongodb
