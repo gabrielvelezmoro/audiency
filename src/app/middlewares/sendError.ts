@@ -6,7 +6,6 @@ export default async (req: Request, res: Response, next: NextFunction) => {
     logger.error({
       message,
       status,
-      // date: new Date()
     });
 
     return this.status(status).send({

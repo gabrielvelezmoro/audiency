@@ -2,16 +2,23 @@ import { Sequelize, DataTypes } from 'sequelize';
 
 const sequelize = new Sequelize('psql');
 
-const Cars = sequelize.define('car', {
+const CarPart = sequelize.define('carPart', {
   id: {
     type: DataTypes.INTEGER,
     allowNull: false,
     autoIncrement: true,
     primaryKey: true,
   },
-  car_types_id: {
+  car_id: {
     type: DataTypes.INTEGER,
-    references: { model: 'car_types', key: 'id' },
+    references: { model: 'car', key: 'id' },
+    onUpdate: 'CASCADE',
+    onDelete: 'CASCADE',
+    allowNull: false,
+  },
+  part_id: {
+    type: DataTypes.INTEGER,
+    references: { model: 'part', key: 'id' },
     onUpdate: 'CASCADE',
     onDelete: 'CASCADE',
     allowNull: false,
@@ -22,4 +29,4 @@ const Cars = sequelize.define('car', {
   },
 });
 
-export default Cars;
+export default CarPart;

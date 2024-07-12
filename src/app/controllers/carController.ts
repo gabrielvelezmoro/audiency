@@ -24,9 +24,6 @@ class CategoryController {
       offset,
     });
 
-    // console.log('categories', categories);
-
-    // return res.json(categories);
     const lastPage = Math.ceil(categories.count / perPage);
 
     return res.json({

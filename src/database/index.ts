@@ -6,13 +6,15 @@ import { databaseConfig } from '@config/database';
  * Models Sequelize
  */
 
-import Cars from '@app/app/models/cars';
-import Product from '@app/app/models/carTypes';
+import CarsTypes from '@models/carTypes';
+import Cars from '@models/cars';
+import Part from '@models/part';
+import CarPart from '@models/carPart';
 
 class Database {
   public connection: any;
 
-  public models = [Cars, Product];
+  public models = [CarsTypes, Cars, Part, CarPart];
 
   constructor() {
     this.init();
@@ -30,9 +32,12 @@ class Database {
   }
 
   private mongo(): void {
+    console.log('MONGO_URL', process.env.MONGO_URL);
     mongoose.connect('mongodb://127.0.0.1:27017/cars', {
       useNewUrlParser: true,
+      useFindAndModify: true,
       useUnifiedTopology: true,
+      useCreateIndex: true,
     });
   }
 }

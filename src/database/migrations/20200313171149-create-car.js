@@ -6,28 +6,32 @@ module.exports = {
 
       Example:
       return queryInterface.createTable('users', { id: Sequelize.INTEGER });
-    */
+      */
     const transaction = await queryInterface.sequelize.transaction();
     try {
-      await queryInterface.createTable('carsType', {
-        id: {
-          type: Sequelize.INTEGER,
-          allowNull: false,
-          autoIncrement: true,
-          primaryKey: true,
+      await queryInterface.createTable(
+        'car',
+        {
+          id: {
+            type: Sequelize.INTEGER,
+            allowNull: false,
+            autoIncrement: true,
+            primaryKey: true,
+          },
+          carType_id: {
+            type: Sequelize.INTEGER,
+            references: { model: 'carType', key: 'id' },
+            onUpdate: 'CASCADE',
+            onDelete: 'CASCADE',
+            allowNull: false,
+          },
+          description: {
+            type: Sequelize.STRING,
+            allowNull: false,
+          },
         },
-        car_id: {
-          type: Sequelize.INTEGER,
-          references: { model: 'cars', key: 'id' },
-          onUpdate: 'CASCADE',
-          onDelete: 'CASCADE',
-          allowNull: false,
-        },
-        description: {
-          type: Sequelize.STRING,
-          allowNull: false,
-        },
-      });
+        { transaction },
+      );
 
       await transaction.commit();
     } catch (error) {
@@ -44,6 +48,6 @@ module.exports = {
       Example:
       return queryInterface.dropTable('users');
       */
-    return queryInterface.dropTable('products');
+    return queryInterface.dropTable('car');
   },
 };

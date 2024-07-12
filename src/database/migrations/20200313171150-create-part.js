@@ -6,26 +6,22 @@ module.exports = {
 
       Example:
       return queryInterface.createTable('users', { id: Sequelize.INTEGER });
-      */
+    */
     const transaction = await queryInterface.sequelize.transaction();
     try {
-      await queryInterface.createTable(
-        'cars',
-        {
-          id: {
-            type: Sequelize.INTEGER,
-            allowNull: false,
-            autoIncrement: true,
-            primaryKey: true,
-          },
-
-          description: {
-            type: Sequelize.STRING,
-            allowNull: false,
-          },
+      await queryInterface.createTable('part', {
+        id: {
+          type: Sequelize.INTEGER,
+          allowNull: false,
+          autoIncrement: true,
+          primaryKey: true,
         },
-        { transaction },
-      );
+
+        description: {
+          type: Sequelize.STRING,
+          allowNull: false,
+        },
+      });
 
       await transaction.commit();
     } catch (error) {
@@ -42,6 +38,6 @@ module.exports = {
       Example:
       return queryInterface.dropTable('users');
       */
-    return queryInterface.dropTable('cars');
+    return queryInterface.dropTable('part');
   },
 };
