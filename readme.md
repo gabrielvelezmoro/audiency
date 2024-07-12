@@ -25,8 +25,6 @@
 ## Instruções
 
 ```bash
-# clonar o repositório
-git clone https://github.com/davidfaria/api-node-typescript-sequelize-mongodb.git
 
 # entrar na pasta do projeto
 cd api-node-typescript-sequelize-mongodb
