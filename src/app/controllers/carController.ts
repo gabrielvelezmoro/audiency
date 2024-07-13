@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import { Op } from 'sequelize';
-import Cars from '@app/app/models/cars';
+import Part from '@app/app/models/part';
 
-class CategoryController {
+class CarsController {
   async index(req: Request, res: Response) {
     const store_id = req.storeId;
     const q: string = req.query.q || '';
@@ -12,7 +12,7 @@ class CategoryController {
     const limit: number = perPage;
     const offset: number = Number(page - 1) * perPage;
 
-    const categories = await Cars.findAndCountAll({
+    const categories = await Part.findAndCountAll({
       order: ['name'],
       where: {
         store_id,
@@ -37,16 +37,13 @@ class CategoryController {
 
   async store(req: Request, res: Response) {
     try {
-      const store_id = req.storeId;
-      const { name, status } = req.body;
+      const { description } = req.body;
 
-      const category = await Cars.create({
-        name,
-        store_id,
-        status,
+      const part = await Part.create({
+        description,
       });
 
-      return res.status(201).json(category);
+      return res.status(201).json(part);
     } catch (error) {
       return res.sendError(error, 500);
     }
@@ -56,7 +53,7 @@ class CategoryController {
     const { id } = req.params;
     const { name, status } = req.body;
 
-    const [, result] = await Cars.update(
+    const [, result] = await Part.update(
       {
         name,
         status,
@@ -78,7 +75,7 @@ class CategoryController {
   async delete(req: Request, res: Response) {
     const { id } = req.params;
 
-    await Cars.destroy({
+    await Part.destroy({
       where: { id },
     });
 
@@ -86,4 +83,4 @@ class CategoryController {
   }
 }
 
-export default new CategoryController();
+export default new CarsController();
