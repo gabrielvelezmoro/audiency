@@ -12,6 +12,27 @@ interface ICar {
 }
 
 class CarsController {
+  public async get(req: Request, res: Response) {
+    const { id } = req.params;
+
+    const car = await Cars.findOne({
+      where: { id },
+    });
+
+    const carTypes = await CarTypes.findOne({
+      where: { id: car.carTypeId },
+    });
+
+    console.log(car);
+    return res.json({
+      data: {
+        id: car.id,
+        description: car.description,
+        carType: carTypes.description,
+      },
+    });
+  }
+
   async store(req: Request, res: Response) {
     try {
       const { description, type, parts } = req.body;
@@ -29,7 +50,6 @@ class CarsController {
         description: description,
       });
 
-      console.log(car.dataValues.id);
       parts.forEach(async (part: number) => {
         console.log(part);
         await CarPart.create({
@@ -45,34 +65,10 @@ class CarsController {
   }
 
   async index(req: Request, res: Response) {
-    const store_id = req.storeId;
-    const q: string = req.query.q || '';
-    const page = Number(req.query.page || 1);
-    const perPage = Number(req.query.perPage || 7);
-
-    const limit: number = perPage;
-    const offset: number = Number(page - 1) * perPage;
-
-    const categories = await Cars.findAndCountAll({
-      order: ['name'],
-      where: {
-        store_id,
-        name: {
-          [Op.iLike]: `%${q}%`,
-        },
-      },
-      limit,
-      offset,
-    });
-
-    const lastPage = Math.ceil(categories.count / perPage);
+    const cars = await Cars.findAndCountAll();
 
     return res.json({
-      total: categories.count,
-      perPage,
-      lastPage,
-      page,
-      data: categories.rows,
+      data: cars.rows,
     });
   }
 

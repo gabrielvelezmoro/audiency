@@ -13,6 +13,12 @@ routes.get(
   CarsController.index,
 );
 
+routes.get(
+  '/cars/:id',
+
+  CarsController.get,
+);
+
 routes.post(
   '/cars',
 
