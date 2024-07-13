@@ -9,16 +9,14 @@ module.exports = {
     */
     const transaction = await queryInterface.sequelize.transaction();
     try {
-      await queryInterface.createTable('carType', {
+      await queryInterface.createTable('carTypes', {
         id: {
           type: Sequelize.INTEGER,
-          allowNull: false,
           autoIncrement: true,
           primaryKey: true,
         },
         description: {
           type: Sequelize.STRING,
-          allowNull: false,
         },
       });
 

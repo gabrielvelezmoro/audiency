@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
-import { Op } from 'sequelize';
 import CarTypes from '@app/app/models/carTypes';
-
+import { AppError } from '@app/errors/app-error';
 class CarTypesController {
   public async index(req: Request, res: Response) {
     const { car_id } = req.body;
@@ -12,13 +11,6 @@ class CarTypesController {
       order: ['description'],
       where: {
         car_id,
-        [Op.or]: [
-          {
-            description: {
-              [Op.iLike]: `%${q}%`,
-            },
-          },
-        ],
       },
       limit: perPage,
       offset: (page - 1) * perPage,
@@ -39,13 +31,14 @@ class CarTypesController {
     try {
       const { description } = req.body;
 
+      console.log(description);
       const carType = await CarTypes.create({
         description,
       });
 
       return res.status(201).json(carType);
     } catch (error) {
-      return res.sendError(error, 500);
+      throw new AppError(error);
     }
   }
 

@@ -18,16 +18,10 @@ module.exports = {
         },
         car_id: {
           type: Sequelize.INTEGER,
-          references: { model: 'car', key: 'id' },
-          onUpdate: 'CASCADE',
-          onDelete: 'CASCADE',
           allowNull: false,
         },
         part_id: {
           type: Sequelize.INTEGER,
-          references: { model: 'part', key: 'id' },
-          onUpdate: 'CASCADE',
-          onDelete: 'CASCADE',
           allowNull: false,
         },
         description: {

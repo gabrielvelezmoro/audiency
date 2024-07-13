@@ -1,18 +1,27 @@
-import { Sequelize, DataTypes } from 'sequelize';
+import { Sequelize, Model, DataTypes } from 'sequelize';
 
-const sequelize = new Sequelize('psql');
+class CarTypes extends Model {
+  static initialize(sequelize: Sequelize) {
+    this.init(
+      {
+        id: {
+          type: DataTypes.INTEGER,
+          allowNull: false,
+          autoIncrement: true,
+          primaryKey: true,
+        },
+        description: {
+          type: DataTypes.STRING,
+        },
+      },
+      {
+        tableName: 'carTypes',
+        sequelize,
+      },
+    );
 
-const CarTypes = sequelize.define('carTypes', {
-  id: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    autoIncrement: true,
-    primaryKey: true,
-  },
-  description: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-});
+    return this;
+  }
+}
 
 export default CarTypes;
