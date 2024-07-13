@@ -8,7 +8,7 @@ export const databaseConfig: Options = {
   password: process.env.DB_PASS,
   database: process.env.DB_NAME,
   define: {
-    timestamps: true,
+    timestamps: false,
     underscored: true,
   },
   storage: './__tests__/database.sqlite',

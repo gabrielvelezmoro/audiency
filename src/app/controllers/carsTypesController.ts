@@ -3,26 +3,11 @@ import CarTypes from '@app/app/models/carTypes';
 import { AppError } from '@app/errors/app-error';
 class CarTypesController {
   public async index(req: Request, res: Response) {
-    const { car_id } = req.body;
-    const page = parseInt(req.query.page || 1, 10);
-    const perPage = parseInt(req.query.perPage || 7, 10);
-
     const carTypes = await CarTypes.findAndCountAll({
       order: ['description'],
-      where: {
-        car_id,
-      },
-      limit: perPage,
-      offset: (page - 1) * perPage,
     });
 
-    const lastPage = Math.ceil(carTypes.count / perPage);
-
     return res.json({
-      total: carTypes.count,
-      perPage,
-      lastPage,
-      page,
       data: carTypes.rows,
     });
   }
@@ -38,6 +23,7 @@ class CarTypesController {
 
       return res.status(201).json(carType);
     } catch (error) {
+      console.log(error);
       throw new AppError(error);
     }
   }

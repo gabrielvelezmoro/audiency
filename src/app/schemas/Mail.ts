@@ -7,32 +7,27 @@ export interface Mail extends Document {
   subject: string;
 }
 
-const schema: Schema = new Schema(
-  {
-    flag: {
-      type: String,
-      required: true,
-    },
-    from: {
-      type: String,
-      required: true,
-      lowercase: true,
-      trim: true,
-    },
-    to: {
-      type: String,
-      required: true,
-      lowercase: true,
-      trim: true,
-    },
-    subject: {
-      type: String,
-      required: true,
-    },
+const schema: Schema = new Schema({
+  flag: {
+    type: String,
+    required: true,
   },
-  {
-    timestamps: true,
+  from: {
+    type: String,
+    required: true,
+    lowercase: true,
+    trim: true,
   },
-);
+  to: {
+    type: String,
+    required: true,
+    lowercase: true,
+    trim: true,
+  },
+  subject: {
+    type: String,
+    required: true,
+  },
+});
 
 export default mongoose.model<Mail>('Mail', schema);
