@@ -13,6 +13,12 @@ routes.get(
   CarTypesController.index,
 );
 
+routes.get(
+  '/car-type/:id',
+
+  CarTypesController.get,
+);
+
 routes.post(
   '/car-type',
 

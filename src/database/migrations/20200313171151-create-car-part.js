@@ -16,11 +16,11 @@ module.exports = {
           autoIncrement: true,
           primaryKey: true,
         },
-        car_id: {
+        carId: {
           type: Sequelize.INTEGER,
           allowNull: false,
         },
-        part_id: {
+        partId: {
           type: Sequelize.INTEGER,
           allowNull: false,
         },

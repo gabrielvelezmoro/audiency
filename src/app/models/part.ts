@@ -10,9 +10,6 @@ class Part extends Model {
           autoIncrement: true,
           primaryKey: true,
         },
-        car_type_id: {
-          type: DataTypes.INTEGER,
-        },
         description: {
           type: DataTypes.STRING,
           allowNull: false,

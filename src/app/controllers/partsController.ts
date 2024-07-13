@@ -17,12 +17,11 @@ class PartController {
     try {
       const { description } = req.body;
 
-      console.log(description);
-      const carType = await Part.create({
+      const parts = await Part.create({
         description,
       });
 
-      return res.status(201).json(carType);
+      return res.status(201).json(parts);
     } catch (error) {
       console.log(error);
       throw new AppError(error);
@@ -33,7 +32,7 @@ class PartController {
     const { id } = req.params;
     const { description } = req.body;
 
-    const [product] = await Part.update(
+    const part = await Part.update(
       {
         description,
       },
@@ -45,7 +44,9 @@ class PartController {
       },
     );
 
-    return res.status(200).json(product);
+    console.log(part);
+
+    return res.status(200).json(part);
   }
 
   async delete(req: Request, res: Response) {

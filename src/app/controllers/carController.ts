@@ -1,8 +1,49 @@
 import { Request, Response } from 'express';
 import { Op } from 'sequelize';
-import Part from '@app/app/models/part';
+import Cars from '@app/app/models/cars';
+import CarTypes from '@app/app/models/carTypes';
+import CarPart from '@app/app/models/carPart';
+import { AppError } from '@app/errors/app-error';
+
+interface ICar {
+  id: number;
+  description: string;
+  car_types_id: number;
+}
 
 class CarsController {
+  async store(req: Request, res: Response) {
+    try {
+      const { description, type, parts } = req.body;
+
+      const carTypes = await CarTypes.findOne({
+        where: { id: type },
+      });
+
+      if (!carTypes) {
+        throw new AppError('Tipo de carro não encontrado', 404);
+      }
+
+      console.log(typeof type);
+      const car = await Cars.create({
+        carTypeId: type,
+        description: description,
+      });
+      console.log('resposta do carro: ', car);
+
+      // parts.forEach(async part => {
+      //   await CarPart.create({
+      //     car_id: car.,
+      //     part_id: part,
+      //   });
+      // });
+
+      return res.status(201).json(car);
+    } catch (error) {
+      return res.sendError(error, 500);
+    }
+  }
+
   async index(req: Request, res: Response) {
     const store_id = req.storeId;
     const q: string = req.query.q || '';
@@ -12,7 +53,7 @@ class CarsController {
     const limit: number = perPage;
     const offset: number = Number(page - 1) * perPage;
 
-    const categories = await Part.findAndCountAll({
+    const categories = await Cars.findAndCountAll({
       order: ['name'],
       where: {
         store_id,
@@ -35,25 +76,11 @@ class CarsController {
     });
   }
 
-  async store(req: Request, res: Response) {
-    try {
-      const { description } = req.body;
-
-      const part = await Part.create({
-        description,
-      });
-
-      return res.status(201).json(part);
-    } catch (error) {
-      return res.sendError(error, 500);
-    }
-  }
-
   async update(req: Request, res: Response) {
     const { id } = req.params;
     const { name, status } = req.body;
 
-    const [, result] = await Part.update(
+    const [, result] = await Cars.update(
       {
         name,
         status,
@@ -75,7 +102,7 @@ class CarsController {
   async delete(req: Request, res: Response) {
     const { id } = req.params;
 
-    await Part.destroy({
+    await Cars.destroy({
       where: { id },
     });
 

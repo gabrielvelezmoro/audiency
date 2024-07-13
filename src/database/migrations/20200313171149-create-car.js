@@ -10,7 +10,7 @@ module.exports = {
     const transaction = await queryInterface.sequelize.transaction();
     try {
       await queryInterface.createTable(
-        'car',
+        'cars',
         {
           id: {
             type: Sequelize.INTEGER,
@@ -18,7 +18,7 @@ module.exports = {
             autoIncrement: true,
             primaryKey: true,
           },
-          carType_id: {
+          carTypeId: {
             type: Sequelize.INTEGER,
             allowNull: false,
           },

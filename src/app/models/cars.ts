@@ -10,7 +10,7 @@ class Cars extends Model {
           autoIncrement: true,
           primaryKey: true,
         },
-        car_type_id: {
+        carTypeId: {
           type: DataTypes.INTEGER,
         },
         description: {

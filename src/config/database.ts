@@ -9,7 +9,6 @@ export const databaseConfig: Options = {
   database: process.env.DB_NAME,
   define: {
     timestamps: false,
-    underscored: true,
   },
   storage: './__tests__/database.sqlite',
   logging: false,

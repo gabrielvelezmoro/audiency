@@ -12,15 +12,27 @@ class CarTypesController {
     });
   }
 
+  public async get(req: Request, res: Response) {
+    const { id } = req.params;
+
+    const carTypes = await CarTypes.findOne({
+      where: { id },
+    });
+
+    return res.json({
+      data: carTypes,
+    });
+  }
+
   async store(req: Request, res: Response) {
     try {
       const { description } = req.body;
 
-      console.log(description);
       const carType = await CarTypes.create({
         description,
       });
 
+      console.log(carType);
       return res.status(201).json(carType);
     } catch (error) {
       console.log(error);
@@ -32,7 +44,7 @@ class CarTypesController {
     const { id } = req.params;
     const { description } = req.body;
 
-    const [product] = await CarTypes.update(
+    const carType = await CarTypes.update(
       {
         description,
       },
@@ -44,7 +56,7 @@ class CarTypesController {
       },
     );
 
-    return res.status(200).json(product);
+    return res.status(200).json(carType);
   }
 
   async delete(req: Request, res: Response) {
