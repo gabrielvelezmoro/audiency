@@ -24,19 +24,19 @@ class CarsController {
         throw new AppError('Tipo de carro não encontrado', 404);
       }
 
-      console.log(typeof type);
       const car = await Cars.create({
         carTypeId: type,
         description: description,
       });
-      console.log('resposta do carro: ', car);
 
-      // parts.forEach(async part => {
-      //   await CarPart.create({
-      //     car_id: car.,
-      //     part_id: part,
-      //   });
-      // });
+      console.log(car.dataValues.id);
+      parts.forEach(async (part: number) => {
+        console.log(part);
+        await CarPart.create({
+          carId: car.dataValues.id,
+          partId: part,
+        });
+      });
 
       return res.status(201).json(car);
     } catch (error) {

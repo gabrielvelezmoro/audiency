@@ -24,10 +24,6 @@ module.exports = {
           type: Sequelize.INTEGER,
           allowNull: false,
         },
-        description: {
-          type: Sequelize.STRING,
-          allowNull: false,
-        },
       });
 
       await transaction.commit();
