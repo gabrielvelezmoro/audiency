@@ -17,6 +17,7 @@ class CarTypes extends Model {
       {
         tableName: 'carTypes',
         sequelize,
+        freezeTableName: true,
       },
     );
 

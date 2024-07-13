@@ -1,15 +1,9 @@
 import { Request, Response } from 'express';
-import { Op } from 'sequelize';
+import { QueryTypes } from 'sequelize';
 import Cars from '@app/app/models/cars';
 import CarTypes from '@app/app/models/carTypes';
 import CarPart from '@app/app/models/carPart';
 import { AppError } from '@app/errors/app-error';
-
-interface ICar {
-  id: number;
-  description: string;
-  car_types_id: number;
-}
 
 class CarsController {
   public async get(req: Request, res: Response) {
@@ -23,7 +17,6 @@ class CarsController {
       where: { id: car.carTypeId },
     });
 
-    console.log(car);
     return res.json({
       data: {
         id: car.id,
@@ -65,10 +58,18 @@ class CarsController {
   }
 
   async index(req: Request, res: Response) {
-    const cars = await Cars.findAndCountAll();
+    let { rows } = await Cars.findAndCountAll();
+
+    for (let index = 0; index < rows.length; index++) {
+      await CarTypes.findOne({
+        where: { id: rows[index].carTypeId },
+      }).then(result => {
+        rows[index].dataValues.typeDescription = result.description;
+      });
+    }
 
     return res.json({
-      data: cars.rows,
+      data: rows,
     });
   }
 
