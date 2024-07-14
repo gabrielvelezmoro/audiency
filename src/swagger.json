@@ -1,23 +1,19 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "climedi Documentation",
-    "description": "Aplicativo para gest\u00e3o de cl\u00ednicas",
+    "title": "Cars Documentations",
+    "description": "Audiency",
     "version": "1.0.0"
   },
   "paths": {
-    "\/states": {
+    "\/cars": {
       "post": {
         "tags": [
-          "Common.States"
+          "Cars"
         ],
-        "summary": "Create a State.",
-        "description": "Create a State.",
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
+        "summary": "Create a Car.",
+        "description": "Create a Car.",
+        "security": [],
         "requestBody": {
           "content": {
             "application\/json": {
@@ -29,7 +25,7 @@
         },
         "responses": {
           "201": {
-            "description": "State created",
+            "description": "Car created",
             "content": {
               "application\/json": {
                 "schema": {
@@ -45,23 +41,55 @@
                 }
               }
             }
-          },
-          "500": {
-            "description": "State already created"
           }
         }
       },
+      "get": {
+        "tags": [
+          "Cars"
+        ],
+        "summary": "List all Cars.",
+        "description": "List all Cars.",
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application\/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#\/components\/schemas\/StateList"
+                  },
+                  "example": [
+                    {
+                      "id": 1,
+                      "carTypeId": 1,
+                      "description": "Vektra",
+                      "typeDescription": "seddan"
+                    },
+                    {
+                      "id": 2,
+                      "carTypeId": 1,
+                      "description": "Vektra",
+                      "typeDescription": "seddan"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "\/cars\/{id}": {
       "put": {
         "tags": [
-          "Common.States"
+          "Cars"
         ],
-        "summary": "Update a State.",
-        "description": "Update a State.",
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
+        "summary": "Update a Car.",
+        "description": "Update a Car.",
+        "security": [],
         "requestBody": {
           "content": {
             "application\/json": {
@@ -72,8 +100,8 @@
           }
         },
         "responses": {
-          "201": {
-            "description": "State updated",
+          "200": {
+            "description": "0",
             "content": {
               "application\/json": {
                 "schema": {
@@ -91,18 +119,23 @@
             }
           }
         }
-      }
-    },
-    "\/states\/list": {
-      "post": {
+      },
+      "get": {
         "tags": [
-          "Common.States"
+          "Cars"
         ],
-        "summary": "List all States.",
-        "description": "List all States.",
-        "security": [
+        "summary": "List Car by Id.",
+        "description": "List Car by Id.",
+        "security": [],
+        "parameters": [
           {
-            "bearerAuth": []
+            "name": "id",
+            "in": "path",
+            "description": "Car id.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -126,19 +159,8 @@
                   },
                   "example": [
                     {
-                      "id": "61e07817-7c0e-48c8-a538-10c2e58c17c8",
-                      "name": "Estado de state 1",
-                      "code": "Uf de state 1"
-                    },
-                    {
-                      "id": "9519abf8-957b-46a6-b3aa-bc0031c3942d",
-                      "name": "Estado de state 2",
-                      "code": "Uf de state 2"
-                    },
-                    {
-                      "id": "ae2aa955-469c-4e58-9bf2-bef9124fcc09",
-                      "name": "Estado de state 3",
-                      "code": "Uf de state 3"
+                      "id": 1,
+                      "carTypeId": 1
                     }
                   ]
                 }
@@ -146,20 +168,55 @@
             }
           }
         }
+      },
+      "delete": {
+        "tags": [
+          "Cars"
+        ],
+        "summary": "Delete a Car.",
+        "description": "Delete a single record of Car.",
+        "security": [],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Car id.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application\/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#\/components\/schemas\/StateGet"
+                  },
+                  "example": {
+                    "id": "da9f1c3d-3271-4b30-b729-1196e5b7402b",
+                    "name": "Estado de state",
+                    "code": "Uf de state"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
-    "\/states\/count": {
+    "\/car-type": {
       "post": {
         "tags": [
-          "Common.States"
+          "Car Type"
         ],
         "summary": "List all States.",
         "description": "List all States.",
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
+        "security": [],
         "requestBody": {
           "content": {
             "application\/json": {
@@ -187,18 +244,14 @@
         }
       }
     },
-    "\/states\/{id}": {
+    "\/car-type\/{id}": {
       "get": {
         "tags": [
-          "Common.States"
+          "Car Type"
         ],
         "summary": "Return a State.",
         "description": "Return a single record of State.",
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
+        "security": [],
         "parameters": [
           {
             "name": "id",
@@ -233,15 +286,11 @@
       },
       "delete": {
         "tags": [
-          "Common.States"
+          "Car Type"
         ],
-        "summary": "Delete a State.",
+        "summary": "Delete a Car Type.",
         "description": "Delete a single record of State.",
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
+        "security": [],
         "parameters": [
           {
             "name": "id",
