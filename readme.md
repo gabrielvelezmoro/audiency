@@ -5,7 +5,7 @@
 ## Pré requisitos
 
 - Git [Git](https://git-scm.com)
-- Node.js [Node.js v12.16](https://nodejs.org/)
+- Node.js [Node.js v11.15.0](https://nodejs.org/)
 - Typescript [Typescript](https://www.typescriptlang.org/)
 - Yarn [Yarn v1.13](https://yarnpkg.com/)
 - MongoDB [MongoDB](https://www.mongodb.com/)
