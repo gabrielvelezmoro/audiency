@@ -8,7 +8,6 @@
 - Node.js [Node.js v12.16](https://nodejs.org/)
 - Typescript [Typescript](https://www.typescriptlang.org/)
 - Yarn [Yarn v1.13](https://yarnpkg.com/)
-- Redis [Redis](https://redis.io/)
 - MongoDB [MongoDB](https://www.mongodb.com/)
 - Docker [Docker](https://www.docker.com/)
 - Docker Compose [Docker Compose](https://docs.docker.com/compose/)
