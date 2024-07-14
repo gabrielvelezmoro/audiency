@@ -25,9 +25,6 @@ yarn install
 # criar .env para informar as SUAS variáveis de ambiente
 cp .env.example .env
 
-# criar .env.test para ambiente de test (jest)
-cp .env.test.example .env.test
-
 # create folder docker/storage para armazenamento local
 mkdir -p docker/storage
 
