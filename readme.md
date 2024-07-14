@@ -47,14 +47,6 @@ docker-compose restart
 
 # iniciar o servidor da aplicação
 yarn dev
-
-# inciar a fila para envio de e-mail
-yarn queue
-
-
-# para rodar os tests
-yarn test
-
 ```
 
 ---
