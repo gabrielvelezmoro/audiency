@@ -10,6 +10,4 @@ export const databaseConfig: Options = {
   define: {
     timestamps: false,
   },
-  storage: './__tests__/database.sqlite',
-  logging: false,
 };

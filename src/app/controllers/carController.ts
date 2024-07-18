@@ -15,14 +15,14 @@ class CarsController {
     });
 
     const carTypes = await CarTypes.findOne({
-      where: { id: car.carTypeId },
+      where: { id: car?.carTypeId },
     });
 
     return res.json({
       data: {
-        id: car.id,
-        description: car.description,
-        carType: carTypes.description,
+        id: car?.id,
+        description: car?.description,
+        carType: carTypes?.description,
       },
     });
   }
@@ -67,7 +67,7 @@ class CarsController {
         carTypeId: type,
         createdAt: date,
       });
-      carMaintenances.save();
+      carMaintenances.save().then(mongoose.disconnect);
 
       return res.status(201).json(car);
     } catch (error) {
